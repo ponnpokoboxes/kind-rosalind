@@ -11,6 +11,7 @@ import bodyParser from "body-parser";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 import getSystemFonts from "get-system-fonts";
+import { spawn } from "node:child_process";
 
 console.log("hello");
 /*const foo = "foo";
@@ -151,7 +152,11 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
   //システムフォントの確認
   try {
     const files = await getSystemFonts();
-    console.log("fc-list", files.join());
+    console.log("getSystemFonts\n", files.join("\n"));
+    const result = spawn("fc-list");
+    result.stdout.on("data", (data) => {
+      console.log(`fc-list Received chunk ${data}`);
+    });
   } catch (e) {
     console.log(e);
   }
