@@ -150,7 +150,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
   //システムフォントの確認
   try{
     const result = spawnSync("fc-list");
-    console.log("fc-list", result.stdout.toString();
+    console.log("fc-list", result.stdout.toString();)
   }catch(e){console.log(e);}
 
   if (String(ctC) == "TRUE") {
