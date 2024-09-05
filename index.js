@@ -147,6 +147,12 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
     comment = "",
     gDchoices = { disableFontFaceIs: false };
 
+  //システムフォントの確認
+  try{
+    const result = spawnSync("fc-list");
+    console.log("fc-list", result.stdout.toString();
+  }catch(e){console.log(e);}
+
   if (String(ctC) == "TRUE") {
     gDchoices.disableFontFaceIs = true;
   } else {
