@@ -124,7 +124,7 @@ async function pdfToPngCreateRes(data) {
 //上の続き。空き状況を確認する
 async function fetching1(uri, okuruJson) {
   try {
-    console.log(okuruJson);
+    /*console.log(okuruJson);*/
     const res = await fetch(uri, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -133,7 +133,7 @@ async function fetching1(uri, okuruJson) {
     const kekka = await res.json();
     const strings = await JSON.parse(JSON.stringify(kekka));
     const data = strings["結果"];
-    console.log("data: ", data);
+    /*console.log("data: ", data);*/
     return data;
   } catch (error) {
     console.log(error);
