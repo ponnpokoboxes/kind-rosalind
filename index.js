@@ -174,7 +174,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
       cMapUrl: "./ndcmaps/",
       cMapPacked: true,
       disableFontFace: gDchoices.disableFontFaceIs,
-      useSystemFonts: true,
+      useSystemFonts: false,
       standardFontDataUrl: "./ndsfc/fonts/google2/",
     })
     .promise.then(async function (pdfIs) {
