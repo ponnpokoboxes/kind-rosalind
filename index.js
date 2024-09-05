@@ -157,11 +157,11 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
   let png = await pdfjsLib
     .getDocument({
       data: pdfData,
-      cMapUrl: "/project/workspace/ndcmaps/",
+      cMapUrl: "/kind-rosalind/ndcmaps/",
       cMapPacked: true,
       disableFontFace: gDchoices.disableFontFaceIs,
       useSystemFonts: true,
-      standardFontDataUrl: "/project/workspace/ndsfc/fonts/google2/",
+      standardFontDataUrl: "/kind-rosalind/ndsfc/fonts/google2/",
     })
     .promise.then(async function (pdfIs) {
       console.log("pdfIs", pdfIs, "for", pdfIs.numPages, "pages");
