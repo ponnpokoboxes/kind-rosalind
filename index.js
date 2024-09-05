@@ -10,6 +10,7 @@ const app = express();
 import bodyParser from "body-parser";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+import getSystemFonts from "get-system-fonts";
 
 console.log("hello");
 /*const foo = "foo";
@@ -148,10 +149,12 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
     gDchoices = { disableFontFaceIs: false };
 
   //システムフォントの確認
-  try{
-    const result = spawnSync("fc-list");
-    console.log("fc-list", result.stdout.toString());
-  }catch(e){console.log(e);}
+  try {
+    const files = await getSystemFonts();
+    console.log("fc-list", files.join());
+  } catch (e) {
+    console.log(e);
+  }
 
   if (String(ctC) == "TRUE") {
     gDchoices.disableFontFaceIs = true;
