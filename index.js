@@ -63,7 +63,7 @@ http
   .listen(process.env.PORT);
 
 //テスト用
-let arrayRes = []; //
+/*let arrayRes = []; //
 let testPdf = fs.readFileSync("test.pdf"),
   pdfTitle = "test",
   pgS = "1",
@@ -79,7 +79,7 @@ await pdfToPngHandller(testPdf, pdfTitle, pgS, pgE, ctC).then(
       }
       return arrayRes;
     }
-);
+);*/
 
 //ステップ0・2　base64をpdfに変換していったん保存する。処理を得たのち、返信用に形を整える
 async function pdfToPngCreateRes(data) {
