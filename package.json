@@ -1,0 +1,38 @@
+{
+  "name": "nodejs-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch index.js"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ]
+  },
+  "keywords": [],
+  "author": "Ives van Hoorne",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/node": "^7.25.0",
+    "@babel/preset-env": "^7.25.4",
+    "body-parser": "^1.20.2",
+    "canvas": "^2.11.2",
+    "express": "^4.19.2",
+    "http": "^0.0.1-security",
+    "pdfjs-dist": "^4.6.82",
+    "query-string": "^9.1.0"
+  },
+  "repository": "/persisted/.git"
+}
