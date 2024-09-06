@@ -157,14 +157,14 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
     result.stdout.on("data", (data) => {
       console.log(`fc-list Received chunk ${data}`);
     });
-    fs.readdirSync("./ndcmaps/").forEach(
-      (file) => {
-        console.log("ndcmaps: ", file);
-      }
+    fs.readdirSync("./ndcmaps/").forEach((file) => {
+      console.log("ndcmaps: ", file);
+    });
     fs.readdirSync("./ndsfc/fonts/google2/").forEach(
       (file) => {
         console.log("google2: ", file);
       }
+    );
   } catch (e) {
     console.log(e);
   }
