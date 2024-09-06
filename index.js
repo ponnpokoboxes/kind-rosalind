@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 import getSystemFonts from "get-system-fonts";
 import { spawn } from "node:child_process";
+import path from "path";
 
 console.log("hello");
 /*const foo = "foo";
@@ -168,6 +169,12 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
   } catch (e) {
     console.log(e);
   }*/
+  try {
+    let relativePath = "./ndsfc/fonts/fonts.conf";
+    let absolutePath = path.resolve("conf", relativePath);
+  } catch (e) {
+    console.warn(e);
+  }
 
   if (String(ctC) == "TRUE") {
     gDchoices.disableFontFaceIs = true;
@@ -224,7 +231,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
         await page.render({ canvasContext: ctx, viewport }).promise;
         //出力
         const image = canvas.toBuffer();
-        console.log("image", image);
+        /*console.log("image", image);*/
         const u8arr = new Uint8Array(image);
         const name = String(pdfTitle) + "-" + String(Number(i)) + ".png";
         array.push([name, u8arr]);
