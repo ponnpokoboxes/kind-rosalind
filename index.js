@@ -39,7 +39,7 @@ http
           } else if (dataObject.type == "convertPdfToPngs") {
             console.log("convertPdfToPngs");
             let pngs = await pdfToPngCreateRes(dataObject); //VOLUME1, title, pdftitle, pdf
-            console.log("pngs", pngs);
+            /*console.log("pngs", pngs);*/
             res.end(
               JSON.stringify({
                 ans: String(pngs.ans),
@@ -92,7 +92,7 @@ async function pdfToPngCreateRes(data) {
     ctC = data.ctC;
   let req = JSON.stringify({ p1: String(VOLUME1), p2: String(title) });
   let res = await fetching1(String(process.env.uri1), req);
-  console.log("res", res);
+  console.log("res", res.type);
   if (res.type == "OK") {
     let buf = Buffer.from(pdf, "base64");
     /*fs.writeFileSync("file.pdf", buf);*/
@@ -150,7 +150,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
     gDchoices = { disableFontFaceIs: false };
 
   //システムフォントの確認
-  try {
+  /*try {
     const files = await getSystemFonts();
     console.log("getSystemFonts\n", files.join("\n"));
     const result = spawn("fc-list");
@@ -167,7 +167,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
     );
   } catch (e) {
     console.log(e);
-  }
+  }*/
 
   if (String(ctC) == "TRUE") {
     gDchoices.disableFontFaceIs = true;
@@ -186,7 +186,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
       standardFontDataUrl: "./ndsfc/fonts/google2/",
     })
     .promise.then(async function (pdfIs) {
-      console.log("pdfIs", pdfIs, "for", pdfIs.numPages, "pages");
+      console.log(/*"pdfIs", pdfIs, */"for", pdfIs.numPages, "pages");
       //ページ範囲（FRなら全部。ただし49で終了）
       if (
         pgS != null &&
@@ -245,7 +245,7 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
       return { array: array, comment: comment, pgS: pgS, pgE: pgE, ctC: ctC };
     })
     .catch();
-  console.log("png", png);
+  /*console.log("png", png);*/
   /*fs.writeFileSync(png.array[0][0], png.array[0][1]); //お試し用*/
   return png;
 }
