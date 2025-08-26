@@ -1,5 +1,5 @@
 import queryString from "query-string";
-import { Canvas, Image } from "canvas";
+import Canvas from "canvas";
 import fs from "node:fs";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
 pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -52,12 +52,7 @@ http
               })
             ); //{ ans: "TEST" }
             return;
-          } else if (dataObject.type == "svgToPng") {
-          let resSvg = await svgToPng(dataObject);
-          /*console.log("resSvg", resSvg);*/
-          res.end(JSON.stringify(resSvg));
-          return;
-        }
+          }
           res.end();
         }
       });
@@ -261,44 +256,3 @@ async function pdfToPngHandller(buf, pdfTitle, pgS, pgE, ctC) {
   /*fs.writeFileSync(png.array[0][0], png.array[0][1]); //お試し用*/
   return png;
 }
-
-//svgをpngに変換
-async function svgToPng(dataObject) {
-  try{ let res = await svgToPng1(dataObject);
-  console.log("ABA");
-  /*console.log("resIs", res.png, res.title);*/
-  let res2 = await fetching1(process.env.uri2, { resIs: res });
-  console.log("res2", res2);
-  return { resIs: res }; }catch(e){return {"resIs": "ERR" + String(e)};}
-}
-
-//処理
-async function svgToPng1(dataObject) {
-  const base64 = dataObject.svg,
-    title = dataObject.title,
-        toward = dataObject.toward, mes = dataObject.mes;
-  console.log("title", title /*, "base64", base64*/);
-
-  //canvasに描く
-  const img = new Image();
-  img.src = String(base64);
-  console.log("img-wh", img.width, img.height);
-  const canvas = Canvas.createCanvas(img.width, img.height);
-  let ctx = canvas.getContext("2d");
-  img.onload = () => ctx.drawImage(img, 0, 0);
-  img.onerror = (err) => {
-    throw err;
-  };
-  img.src = String(base64);
-
-  //画像を取り出す
-  const buf = canvas.toBuffer();
-  const res = Buffer.from(buf).toString("base64");
-
-  /*console.log("res", res);*/
-
-  return { toward: toward, mes: mes, title: String(title) + ".png", png: res };
-}
-
-
-
